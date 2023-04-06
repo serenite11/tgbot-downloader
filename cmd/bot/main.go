@@ -23,5 +23,4 @@ func main() {
 	if err := telegramBot.Start(); err != nil {
 		log.Fatal(err)
 	}
-
 }

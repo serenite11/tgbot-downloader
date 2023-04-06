@@ -20,9 +20,9 @@ func (b *Bot) handleCommand(message *tgbotapi.Message) error {
 
 func (b *Bot) handleMessage(message *tgbotapi.Message) {
 	log.Printf("[%s] %s", message.From.UserName, message.Text)
-
 	msg := tgbotapi.NewMessage(message.Chat.ID, message.Text)
-	msg.ReplyToMessageID = message.MessageID
-
-	b.bot.Send(msg)
+	path := b.Download(msg.Text)
+	audioConfig := tgbotapi.NewAudioUpload(message.Chat.ID, path)
+	audioConfig.ReplyToMessageID = message.MessageID
+	b.bot.Send(audioConfig)
 }
