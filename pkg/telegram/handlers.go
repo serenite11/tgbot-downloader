@@ -9,7 +9,7 @@ func (b *Bot) handleCommand(message *tgbotapi.Message) error {
 	msg := tgbotapi.NewMessage(message.Chat.ID, "")
 	switch message.Command() {
 	case "start":
-		msg.Text = ""
+		msg.Text = "Введите url"
 		_, err := b.bot.Send(msg)
 		return err
 	default:
