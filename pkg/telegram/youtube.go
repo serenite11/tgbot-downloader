@@ -3,6 +3,7 @@ package telegram
 import (
 	"github.com/kkdai/youtube/v2"
 	"io"
+	"net/http"
 	"os"
 )
 
@@ -28,4 +29,15 @@ func (b *Bot) Download(url string) string {
 		panic(err)
 	}
 	return video.Title + ".mp3"
+}
+func (b *Bot) UrlIsValid(url string) string {
+	path := "https://www.youtube.com/"
+	if url[0:24] != path {
+		return "Your url not from youtube"
+	}
+	_, err := http.Get(url)
+	if err != nil {
+		return err.Error()
+	}
+	return "Your url is valid"
 }
