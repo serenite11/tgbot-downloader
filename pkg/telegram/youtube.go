@@ -22,8 +22,7 @@ func (b *Bot) Download(url string) string {
 	if err != nil {
 		panic(err)
 	}
-	defer os.Remove(video.Title + ".mp3")
-
+	defer file.Close()
 	_, err = io.Copy(file, stream)
 	if err != nil {
 		panic(err)
